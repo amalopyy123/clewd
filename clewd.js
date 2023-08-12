@@ -768,7 +768,17 @@ const Proxy = Server((async (req, res) => {
                 ...userConfig
             };
         } else {
-            Config.Cookie = process.env.cookies;
+            let envCookies = process.env.cookies;
+            let cookieArr = envCookies.split(/;\s?/gi).filter((prop => false === /^(path|expires|domain|HttpOnly|Secure|SameSite)[=;]*/i.test(prop)));
+            for (const cookie of cookieArr) {
+                const divide = cookie.split(/^(.*?)=\s*(.*)/);
+                const cookieName = divide[1];
+                const cookieVal = divide[2];
+                Config.Cookie[cookieName] = cookieVal;
+            }
+            //error
+            //Cannot create property 'sessionKey' on string 'sessionKey=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'
+            //Config.Cookie = process.env.cookies;
             writeSettings(Config, true);
         }
     })();
