@@ -44,7 +44,7 @@ const Conversation = {
     depth: 0
 };
 
-const cookies = {};
+const cookies = process.env.cookies;
 
 let curPrompt = {};
 
@@ -61,8 +61,8 @@ let uuidOrg;
  * these are the defaults and change every update
  * @preserve
  */ let Config = {
-    Cookie: '',
-    Ip: '127.0.0.1',
+    Cookie: process.env.cookies,
+    Ip: '0.0.0.0',
     Port: 8444,
     BufferSize: 8,
     SystemInterval: 3,
