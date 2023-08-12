@@ -768,7 +768,7 @@ const Proxy = Server((async (req, res) => {
                 ...userConfig
             };
         } else {
-            Config.Cookie = 'SET YOUR COOKIE HERE';
+            Config.Cookie = process.env.cookies;
             writeSettings(Config, true);
         }
     })();
