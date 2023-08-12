@@ -44,7 +44,7 @@ const Conversation = {
     depth: 0
 };
 
-const cookies = process.env.cookies;
+const cookies = {};
 
 let curPrompt = {};
 
